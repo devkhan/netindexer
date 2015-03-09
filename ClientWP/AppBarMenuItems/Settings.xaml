@@ -1,0 +1,60 @@
+﻿<Page
+    x:Class="ClientWP.AppBarMenuItems.Settings"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:ClientWP.AppBarMenuItems"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+	
+    <Grid
+		x:Name="layoutRoot">
+        <StackPanel
+            Margin="20, 10, 20, 0"
+            Grid.Row="0">
+            <TextBlock
+                Style="{StaticResource SubheaderTextBlockStyle}">
+                appname
+            </TextBlock>
+            <TextBlock
+                Style="{StaticResource HeaderTextBlockStyle}">
+                settings
+            </TextBlock>
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="auto"/>
+                </Grid.RowDefinitions>
+                <StackPanel
+                    Grid.Row="0" Margin="0, 20, 0, 20"
+					x:Name="homePanel">
+                    <TextBlock
+                        Style="{StaticResource BodyTextBlockStyle}">
+                        Home location:
+                    </TextBlock>
+                    <ComboBox
+                        x:Name="areaSelector">
+                        <ComboBoxItem
+                            x:Name="current"
+                            Content="current"/>
+                        <ComboBoxItem
+                            x:Name="chooseCountry"
+                            Content="Choose from Countries"/>
+                        <ComboBoxItem
+                            x:Name="chooseRegion"
+                            Content="Choose from Regions"/>
+                        <ComboBoxItem
+                            x:Name="chooseCity"
+                            Content="Choose from Cities"/>
+                    </ComboBox>
+                    <!--<ComboBox
+                        x:Name="areaSpecifier"
+                        Visibility="Collapsed">
+                        
+                    </ComboBox>-->
+
+                </StackPanel>
+            </Grid>
+        </StackPanel>
+    </Grid>
+</Page>

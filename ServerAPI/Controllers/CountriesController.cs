@@ -11,6 +11,12 @@ using System.Diagnostics;
 
 namespace ServerAPI.Controllers
 {
+	public class MinMax
+	{
+		public string max { get; set; }
+		public string min { get; set; }
+	}
+
     public class CountriesController : ApiController
     {
         List<Country> countries = new List<Country>();
@@ -19,27 +25,26 @@ namespace ServerAPI.Controllers
         {
             try
             {
-                using (OdbcConnection connection = new OdbcConnection("DRIVER={MySQL ODBC 3.51 Driver};Database=countries;Server=localhost;UID=root;PWD=;"))
+                using (OdbcConnection connection = new OdbcConnection("DRIVER={MySQL ODBC 3.51 Driver};Database=netindex;Server=localhost;UID=root;PWD=;"))
                 {
                     connection.Open();
-                    using (OdbcCommand command = new OdbcCommand("SELECT id, name FROM countries", connection))
+                    using (OdbcCommand command = new OdbcCommand("SELECT * FROM countries_list", connection))
                     using (OdbcDataReader dr = command.ExecuteReader())
                     {
-                        OdbcCommand count = new OdbcCommand("SELECT COUNT(*) as number FROM countries", connection);
+                        OdbcCommand count = new OdbcCommand("SELECT COUNT(*) as number FROM countries_list", connection);
                         OdbcDataReader d = count.ExecuteReader();
                         d.Read();
                         string x = d["number"].ToString();
                         int n = int.Parse(x);
                         Trace.WriteLine("No. of records: " + n.ToString());
-                        Trace.WriteLine("Hello fucker");
                         while(n!=0)
                         {
                             var country = new Country();
                             Trace.WriteLine(dr.Read());
-                            country.id = (int)dr["id"];
-                            country.name = dr["name"].ToString();
+                            country.country_code = dr["country_code"].ToString();
+                            country.country = dr["country"].ToString();
                             countries.Add(country);
-                            Trace.WriteLine(country.id.ToString() + " " + country.name.ToString());
+                            Trace.WriteLine(country.country_code.ToString() + " " + country.country.ToString());
                             n--;
                         }
                         d.Close();
@@ -56,7 +61,7 @@ namespace ServerAPI.Controllers
             return countries;
         }
 
-        public IHttpActionResult GetCountry(int id)
+        public IHttpActionResult GetCountry(string id)
         {
             //var Country = countries.FirstOrDefault((p) => p.id == id);
             //if(Country==null)
@@ -65,16 +70,27 @@ namespace ServerAPI.Controllers
             //    return NotFound();
             //}
             //Trace.Write(Country.id.ToString() + " " + Country.name.ToString());
-            Country Country = new Country();
-            OdbcConnection connection = new OdbcConnection("DRIVER={MySQL ODBC 3.51 Driver};Database=countries;Server=localhost;UID=root;PWD=;");
-            connection.Open();
-            OdbcCommand command = new OdbcCommand("SELECT name FROM countries WHERE id=" + id.ToString() + ";", connection);
-            OdbcDataReader dr = command.ExecuteReader();
-            dr.Read();
-            Country.id = id;
-            Country.name = dr["name"].ToString();
-            Trace.Write(Country);
-            return Ok(Country);
+
+	
+			//Country Country = new Country();
+			//OdbcConnection connection = new OdbcConnection("DRIVER={MySQL ODBC 3.51 Driver};Database=countries;Server=localhost;UID=root;PWD=;");
+			//connection.Open();
+			//OdbcCommand command = new OdbcCommand("SELECT name FROM countries WHERE id=" + id.ToString() + ";", connection);
+			//OdbcDataReader dr = command.ExecuteReader();
+			//dr.Read();
+			//Country.id = id;
+			//Country.country = dr["name"].ToString();
+			//Trace.Write(Country);
+			//return Ok(Country);
+			MinMax minmax = new MinMax();
+			OdbcConnection connection = new OdbcConnection("DRIVER={MySQL ODBC 3.51 Driver};Database=netindex;Server=localhost;UID=root;PWD=;");
+			connection.Open();
+			OdbcCommand command = new OdbcCommand("SELECT MIN(median_usd_mbps_down) AS min, MAX(median_usd_mbps_down) AS max FROM country_daily_value WHERE country='" + id.ToString() + "';", connection);
+			OdbcDataReader dr = command.ExecuteReader();
+			dr.Read();
+			minmax.min = dr["min"].ToString();
+			minmax.max = dr["max"].ToString();
+			return Ok(minmax);
         }
     }
 }

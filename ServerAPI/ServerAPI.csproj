@@ -38,8 +38,17 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\EntityFramework.6.1.1\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer">
+      <HintPath>..\packages\EntityFramework.6.1.1\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Net.Http" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.ApplicationServices" />
@@ -80,15 +89,68 @@
   <ItemGroup>
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\CountriesController.cs" />
+    <Compile Include="Controllers\RegionsController.cs" />
+    <Compile Include="Controllers\SearchController.cs" />
+    <Compile Include="countries_list.cs">
+      <DependentUpon>netindex.tt</DependentUpon>
+    </Compile>
+    <Compile Include="country_daily_promise.cs">
+      <DependentUpon>netindex.tt</DependentUpon>
+    </Compile>
+    <Compile Include="dmd.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>dmd.edmx</DependentUpon>
+    </Compile>
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\Country.cs" />
+    <Compile Include="Models\Region.cs" />
+    <Compile Include="netindex.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>netindex.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="netindex.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>netindex.tt</DependentUpon>
+    </Compile>
+    <Compile Include="netindex.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>netindex.edmx</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config">
       <SubType>Designer</SubType>
+    </Content>
+    <EntityDeploy Include="netindex.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>netindex.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <Content Include="netindex.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>netindex.edmx</DependentUpon>
+      <LastGenOutput>netindex.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="netindex.edmx.diagram">
+      <DependentUpon>netindex.edmx</DependentUpon>
+    </Content>
+    <Content Include="netindex.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>netindex.edmx</DependentUpon>
+      <LastGenOutput>netindex.cs</LastGenOutput>
+    </Content>
+    <EntityDeploy Include="dmd.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>dmd.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <Content Include="dmd.edmx.diagram">
+      <DependentUpon>dmd.edmx</DependentUpon>
     </Content>
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -99,6 +161,9 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

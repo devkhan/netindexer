@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="7a7c29b3cd804da49bd41033f72cb1ab" Name="Diagram1">
+        <EntityTypeShape EntityType="cdbmsModel1.category" Width="1.5" PointX="1.25" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="cdbmsModel1.inventory" Width="1.5" PointX="1.5" PointY="3.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="cdbmsModel1.menu" Width="1.5" PointX="3.5" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="cdbmsModel1.present_bill" Width="1.5" PointX="8.625" PointY="4.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="cdbmsModel1.present_kot" Width="1.5" PointX="6.75" PointY="4.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="cdbmsModel1.user_detail" Width="1.5" PointX="11.75" PointY="1.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="cdbmsModel1.user_order" Width="1.5" PointX="11.625" PointY="3.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="cdbmsModel1.bill" Width="1.5" PointX="9.625" PointY="1.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="cdbmsModel1.inventory_backup" Width="1.5" PointX="3.5" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="cdbmsModel1.kot" Width="1.625" PointX="7.75" PointY="1.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="cdbmsModel1.kot_backup" Width="1.5" PointX="6" PointY="1.25" IsExpanded="true" />
+        <AssociationConnector Association="cdbmsModel1.menu_ibfk_1" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

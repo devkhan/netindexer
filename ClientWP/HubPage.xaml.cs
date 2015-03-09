@@ -36,7 +36,7 @@ namespace ClientWP
         public HubPage()
         {
             this.InitializeComponent();
-
+            
             // Hub is only supported in Portrait orientation
             DisplayInformation.AutoRotationPreferences = DisplayOrientations.Portrait;
 
@@ -146,5 +146,19 @@ namespace ClientWP
         }
 
         #endregion
+
+        private async void Button_Click(object sender, RoutedEventArgs e)
+        {
+            JsonWebClient client = new JsonWebClient();
+            var resp = await client.DoRequestAsync("http://169.254.80.80:88/api/countries");
+            string result = resp.ReadToEnd();
+            resultT.Text = result;
+
+        }
+
+        private void settingsClick(object sender, RoutedEventArgs e)
+        {
+            Frame.Navigate(typeof(AppBarMenuItems.Settings));
+        }
     }
 }

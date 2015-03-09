@@ -151,59 +151,7 @@ namespace ClientWP.Data
         }
     }
 
-    // My own data model for countries.
-    public class Countries
-    {
-        public int id { get; set; }
-        public string name { get; set; }
-    }
 
-    public class CountriesSource
-    {
-        private static CountriesSource _countriesSource = new CountriesSource();
 
-        private ObservableCollection<Countries> _countries = new ObservableCollection<Countries>();
-        public ObservableCollection<Countries> countries
-        {
-            get { return this._countries; }
-        }
-
-        private async Task GetSampleDataAsync()
-        {
-            if (this._countries.Count != 0)
-                return;
-
-            this._countries.Clear();
-
-            //Uri dataUri = new Uri("http://192.168.1.104:8888/api/countries/");
-
-            //StorageFile file = await StorageFile.GetFileFromApplicationUriAsync(dataUri);
-            //string jsonText = await FileIO.ReadTextAsync(file);
-            //JsonObject jsonObject = JsonObject.Parse(jsonText);
-            //JsonArray jsonArray = jsonObject["Groups"].GetArray();
-
-            //foreach (JsonValue groupValue in jsonArray)
-            //{
-            //    JsonObject groupObject = groupValue.GetObject();
-            //    SampleDataGroup group = new SampleDataGroup(groupObject["UniqueId"].GetString(),
-            //                                                groupObject["Title"].GetString(),
-            //                                                groupObject["Subtitle"].GetString(),
-            //                                                groupObject["ImagePath"].GetString(),
-            //                                                groupObject["Description"].GetString());
-
-            //    foreach (JsonValue itemValue in groupObject["Items"].GetArray())
-            //    {
-            //        JsonObject itemObject = itemValue.GetObject();
-            //        group.Items.Add(new SampleDataItem(itemObject["UniqueId"].GetString(),
-            //                                           itemObject["Title"].GetString(),
-            //                                           itemObject["Subtitle"].GetString(),
-            //                                           itemObject["ImagePath"].GetString(),
-            //                                           itemObject["Description"].GetString(),
-            //                                           itemObject["Content"].GetString()));
-            //    }
-            //    this.Groups.Add(group);
-
-        }
-
-    }
+    
 }
